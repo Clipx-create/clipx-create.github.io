@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ClipX - Video Editing Course</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:linear-gradient(-45deg,#0a041a,#1a0d3a,#140c35,#0f0c29);
+    background-size:400% 400%;
+    animation:bgMove 15s ease infinite;
+    color:#fff;
+    overflow-x:hidden;
+}
+
+@keyframes bgMove{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
+
+
+/* Background Glow */
+body::before,
+body::after{
+    content:"";
+    position:fixed;
+    width:600px;
+    height:600px;
+    border-radius:50%;
+    filter:blur(150px);
+    z-index:-2;
+}
+
+body::before{
+    top:-250px;
+    left:-250px;
+    background:radial-gradient(circle,#7c3aed,transparent 70%);
+}
+
+body::after{
+    bottom:-250px;
+    right:-250px;
+    background:radial-gradient(circle,#9333ea,transparent 70%);
+}
+
+/* Mouse Light */
+.mouse-light{
+    position:fixed;
+    width:500px;
+    height:500px;
+    border-radius:50%;
+    pointer-events:none;
+    background:radial-gradient(circle, rgba(168,85,247,0.35), transparent 70%);
+    filter:blur(100px);
+    transform:translate(-50%,-50%);
+    z-index:-1;
+}
+
+/* Main Container */
+.wrapper{
+    max-width:1200px;
+    margin:60px auto;
+    padding:60px;
+    border-radius:35px;
+    background:linear-gradient(145deg,#0f0c29,#140c35);
+    box-shadow:
+        0 0 80px rgba(124,58,237,0.4),
+        inset 0 0 60px rgba(168,85,247,0.2);
+}
+
+/* Header */
+header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:80px;
+}
+
+.logo{
+    position:relative;
+    display:inline-block;
+}
+
+.logo img{
+    height:45px;
+    position:relative;
+    z-index:2;
+    filter:
+        drop-shadow(0 0 10px #a855f7)
+        drop-shadow(0 0 20px #9333ea)
+        drop-shadow(0 0 40px #7c3aed);
+}
+
+/* Purple Aura Behind Logo */
+.logo::before{
+    content:"";
+    position:absolute;
+    top:50%;
+    left:50%;
+    width:160%;
+    height:200%;
+    transform:translate(-50%,-50%);
+    background:radial-gradient(circle, rgba(168,85,247,0.6), transparent 70%);
+    filter:blur(40px);
+    z-index:1;
+}
+
+
+
+nav a{
+    margin:0 18px;
+    text-decoration:none;
+    color:#bbb;
+    font-size:14px;
+    transition:0.3s;
+}
+
+nav a:hover{
+    color:#fff;
+}
+
+.btn{
+    padding:10px 25px;
+    border-radius:30px;
+    border:none;
+    background:linear-gradient(90deg,#7c3aed,#a855f7);
+    color:#fff;
+    cursor:pointer;
+    font-weight:600;
+    box-shadow:0 0 25px rgba(168,85,247,0.8);
+    transition:0.3s;
+}
+
+.btn:hover{
+    transform:scale(1.05);
+}
+
+/* Hero */
+.hero{
+    text-align:center;
+    margin-bottom:60px;
+}
+
+.hero h1{
+    font-size:40px;
+    margin-bottom:20px;
+}
+
+.hero p{
+    color:#aaa;
+    margin-bottom:25px;
+}
+
+/* Highlight Background Effect */
+
+/* ===== PREMIUM HERO ===== */
+
+.premium-hero{
+    font-size:48px;
+    line-height:1.3;
+    font-weight:700;
+    letter-spacing:0.5px;
+}
+
+/* Gradient Text */
+.gradient-text{
+    background:linear-gradient(90deg,#a855f7,#7c3aed,#9333ea);
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+/* Glowing Word */
+.glow-text{
+    color:#fff;
+    text-shadow:
+        0 0 10px #a855f7,
+        0 0 20px #7c3aed,
+        0 0 40px #9333ea;
+}
+
+/* Soft Under Glow */
+.premium-hero::after{
+    content:"";
+    display:block;
+    width:60%;
+    height:20px;
+    margin:20px auto 0;
+    background:radial-gradient(circle, rgba(168,85,247,0.5), transparent 70%);
+    filter:blur(20px);
+}
+
+
+
+/* Glass Card */
+.glass{
+    background:rgba(255,255,255,0.05);
+    padding:40px;
+    border-radius:20px;
+    backdrop-filter:blur(20px);
+    border:1px solid rgba(255,255,255,0.08);
+    margin-bottom:50px;
+}
+
+/* ===== WHAT YOU GET SECTION ===== */
+
+.what-you-get{
+    text-align:center;
+    padding:60px 40px;
+}
+
+.wyg-title{
+    font-size:28px;
+    margin-bottom:50px;
+    position:relative;
+}
+
+/* Line effect */
+.wyg-title::before,
+.wyg-title::after{
+    content:"";
+    position:absolute;
+    top:50%;
+    width:30%;
+    height:1px;
+    background:rgba(168,85,247,0.5);
+}
+
+.wyg-title::before{
+    left:0;
+}
+
+.wyg-title::after{
+    right:0;
+}
+
+.wyg-grid{
+    display:flex;
+    justify-content:space-between;
+    gap:30px;
+    flex-wrap:wrap;
+}
+
+.wyg-item{
+    flex:1;
+    min-width:200px;
+    padding:30px 20px;
+    border-radius:15px;
+    background:rgba(255,255,255,0.04);
+    border:1px solid rgba(255,255,255,0.08);
+    transition:0.3s ease;
+}
+
+.wyg-item:hover{
+    transform:translateY(-8px);
+    box-shadow:0 0 25px rgba(168,85,247,0.4);
+}
+
+.wyg-icon{
+    font-size:40px;
+    margin-bottom:15px;
+    text-shadow:
+        0 0 10px #a855f7,
+        0 0 20px #7c3aed;
+}
+
+.wyg-item p{
+    color:#ccc;
+    font-size:14px;
+}
+
+/* Video */
+.video-box{
+    height:350px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:22px;
+    color:#bbb;
+}
+
+/* Grid */
+.grid{
+    display:flex;
+    gap:40px;
+    flex-wrap:wrap;
+}
+
+.grid div{
+    flex:1;
+    min-width:250px;
+}
+
+ul{
+    list-style:none;
+}
+
+ul li{
+    margin:10px 0;
+    color:#bbb;
+}
+
+/* Testimonials */
+
+.testimonials{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.testimonial{
+    flex:1;
+    min-width:250px;
+    padding:20px;
+    border-radius:15px;
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.08);
+}
+.testimonials{
+    justify-content:center;
+    text-align:center;
+}
+
+/* CTA */
+.cta{
+    text-align:center;
+}
+
+.price{
+    font-size:24px;
+    margin:15px 0;
+}
+
+/* ===== Footer ===== */
+
+.main-footer{
+    margin-top:100px;
+    padding-top:60px;
+    border-top:1px solid rgba(255,255,255,0.08);
+}
+
+.footer-grid{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:40px;
+}
+
+.footer-col{
+    flex:1;
+    min-width:200px;
+}
+
+.footer-col h3,
+.footer-col h4{
+    margin-bottom:20px;
+}
+
+.footer-col p{
+    color:#aaa;
+    font-size:14px;
+    line-height:1.6;
+}
+
+.footer-col a{
+    display:block;
+    color:#aaa;
+    text-decoration:none;
+    margin-bottom:10px;
+    font-size:14px;
+    transition:0.3s;
+}
+
+.footer-col a:hover{
+    color:#a855f7;
+}
+
+.footer-bottom{
+    margin-top:50px;
+    text-align:center;
+    color:#666;
+    font-size:13px;
+}
+
+
+@media(max-width:900px){
+    .wrapper{ padding:30px; }
+    .grid{ flex-direction:column; }
+    .testimonials{ flex-direction:column; }
+}
+
+/* Inside Section */
+
+.inside-section{
+    text-align:center;
+}
+
+.inside-title{
+    font-size:30px;
+    margin-bottom:40px;
+}
+
+.inside-grid{
+    display:flex;
+    justify-content:center;   /* center columns */
+    align-items:flex-start;
+    gap:140px;                /* equal spacing between columns */
+    text-align:left;
+    flex-wrap:wrap;
+    max-width:900px;          /* control width */
+    margin:0 auto;            /* full section center */
+}
+
+.inside-grid ul{
+    flex:1;
+    min-width:250px;
+    list-style:none;
+}
+
+.inside-grid li{
+    margin:16px 0;
+    color:#bbb;
+    position:relative;
+    padding-left:35px;
+}
+
+/* Glowing Check Icon */
+.inside-grid li::before{
+    content:"✔";
+    position:absolute;
+    left:0;
+    top:0;
+    color:#a855f7;
+    font-weight:700;
+    text-shadow:
+        0 0 8px #a855f7,
+        0 0 16px #7c3aed,
+        0 0 24px #9333ea;
+}
+
+/* ===== CENTER ALL MAIN SECTIONS ===== */
+
+.glass > p{
+    text-align:center;
+}
+
+/* Center UL in specific sections */
+.glass ul{
+    text-align:center;
+    padding:0;
+}
+
+.glass ul li{
+    text-align:center;
+}
+
+/* Student Results alignment */
+.testimonials{
+    justify-content:center;
+    text-align:center;
+}
+
+/* Bonuses section tighter center */
+.glass ul li{
+    margin:12px 0;
+}
+
+/* Optional: Make all glass cards content centered */
+.glass{
+    text-align:center;
+}
+
+/* ===== AUTO SCROLL TESTIMONIALS ===== */
+
+.testimonial-section{
+    text-align:center;
+    overflow:hidden;
+}
+
+.section-title{
+    font-size:30px;
+    margin-bottom:10px;
+}
+
+.section-sub{
+    color:#aaa;
+    margin-bottom:50px;
+}
+
+.scroll-wrapper{
+    overflow:visible;
+    position:relative;
+}
+
+.scroll-track{
+    display:flex;
+    gap:30px;
+    width:max-content;
+    animation:scrollLeft 25s linear infinite;
+}
+
+.review-card{
+    min-width:300px;
+    max-width:300px;
+    padding:25px;
+    border-radius:18px;
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.08);
+    backdrop-filter:blur(15px);
+    transition:0.3s;
+}
+
+.review-card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 0 25px rgba(168,85,247,0.5);
+}
+
+.review-card h4{
+    margin-bottom:5px;
+}
+
+.review-card span{
+    font-size:12px;
+    color:#a855f7;
+}
+
+.review-card p{
+    font-size:14px;
+    margin-top:15px;
+    color:#ccc;
+}
+
+@keyframes scrollLeft{
+    0%{ transform:translateX(0); }
+    100%{ transform:translateX(-50%); }
+}
+
+/* ===== CIRCLE PROFILE IMAGE ===== */
+
+.review-card{
+    position:relative;
+    padding-top:70px; /* image ke liye space */
+}
+
+.review-img{
+    position:absolute;
+    top:-35px;
+    left:50%;
+    transform:translateX(-50%);
+    width:70px;
+    height:70px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid #a855f7;
+    box-shadow:0 0 20px rgba(168,85,247,0.7);
+    background:#111;
+}
+
+.review-img img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+
+
+/* ===== CHANNEL SLIDER ===== */
+
+/* ===== CLIENT VIDEO REVIEWS ===== */
+
+/* .client-video-section{
+    text-align:center;
+}
+
+.client-video-grid{
+    display:flex;
+    gap:30px;
+    flex-wrap:wrap;
+    justify-content:center;
+    margin-top:40px;
+}
+
+.video-card{
+    width:300px;
+    background:rgba(255,255,255,0.05);
+    padding:15px;
+    border-radius:20px;
+    border:1px solid rgba(255,255,255,0.1);
+}
+
+.video-card video{
+    width:100%;
+    border-radius:15px;
+    margin-bottom:10px;
+}
+
+.video-card p{
+    font-size:14px;
+    color:#ccc;
+} */
+
+/* ===== PREMIUM CLIENT VIDEO REVIEWS ===== */
+
+.client-video-section{
+    text-align:center;
+    margin-top:60px;
+}
+
+.client-video-grid{
+    display:flex;
+    gap:40px;
+    flex-wrap:wrap;
+    justify-content:center;
+    margin-top:50px;
+}
+
+.video-card{
+    width:280px;
+    background:linear-gradient(145deg,#0f0c29,#140c35);
+    padding:12px;
+    border-radius:25px;
+    position:relative;
+    border:1px solid rgba(168,85,247,0.3);
+    box-shadow:0 0 40px rgba(124,58,237,0.2);
+    transition:0.4s ease;
+    overflow:hidden;
+}
+
+
+.video-card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 0 60px rgba(168,85,247,0.6);
+}
+
+
+.video-card video{
+    width:100%;
+    height:480px;
+    object-fit:cover;
+    border-radius:20px;
+}
+
+
+.video-card::after{
+    content:"▶";
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    font-size:50px;
+    color:white;
+    opacity:0.8;
+    pointer-events:none;
+    text-shadow:0 0 20px #a855f7;
+}
+
+
+.video-card:hover::after{
+    opacity:0;
+}
+
+.video-card p{
+    margin-top:15px;
+    font-size:14px;
+    color:#bbb;
+    text-align:center;
+}
+
+.review-card{
+    padding:30px 25px 30px;
+}
+
+.review-img{
+    position:relative;
+    top:0;
+    left:0;
+    transform:none;
+    margin:-60px auto 15px;
+    width:90px;
+    height:90px;
+    border-radius:50%;
+    overflow:hidden;
+    border:4px solid #a855f7;
+    box-shadow:0 0 25px rgba(168,85,247,0.8);
+}
+
+
+/* ===== EARNING SECTION ===== */
+
+.earn-section{
+    margin:80px 0;
+    padding:60px;
+    border-radius:30px;
+    background:linear-gradient(145deg,#0f0c29,#1a0d3a);
+    box-shadow:0 0 60px rgba(168,85,247,0.4);
+}
+
+.earn-container{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:40px;
+    flex-wrap:wrap;
+}
+
+.earn-left{
+    flex:1;
+    min-width:300px;
+}
+
+.earn-left h1{
+    font-size:42px;
+    margin-bottom:25px;
+}
+
+.earn-left h1 span{
+    color:#7ef9c6;
+}
+
+.earn-left ul{
+    list-style:none;
+    margin-bottom:25px;
+}
+
+.earn-left ul li{
+    margin-bottom:12px;
+    color:#ddd;
+    font-size:18px;
+}
+
+.earn-left h3{
+    color:#7ef9c6;
+    margin-bottom:15px;
+}
+
+.bottom-text{
+    color:#aaa;
+}
+
+.earn-right{
+    flex:1;
+    text-align:center;
+}
+
+.earn-right img{
+    width:450px;
+    max-width:100%;
+    filter:drop-shadow(0 0 30px rgba(168,85,247,0.8));
+}
+
+@media(max-width:900px){
+    .earn-container{
+        flex-direction:column;
+        text-align:center;
+    }
+}
+
+
+/* ===== VIDEO PLAY STYLE ===== */
+
+/* ===== PRO CINEMATIC PLAYER ===== */
+
+/* ===== PERFECT CINEMATIC SIZE ===== */
+
+.pro-player{
+    position:relative;
+    width:100%;
+    max-width:1100px;
+    margin:80px auto;
+    aspect-ratio:16/9;   /* automatic perfect ratio */
+    border-radius:25px;
+    overflow:hidden;
+    box-shadow:0 0 80px rgba(0,0,0,0.6);
+}
+
+/* Video full fill */
+.pro-player video{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    transition:transform 1.5s ease;
+}
+
+/* Zoom effect */
+.pro-player.playing video{
+    transform:scale(1.05);
+}
+
+/* Dark Overlay */
+.player-overlay{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.2));
+    transition:0.6s ease;
+}
+
+/* Hide overlay when playing */
+.pro-player.playing .player-overlay{
+    opacity:0;
+}
+
+/* Big Play Button */
+.big-play{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:110px;
+    height:110px;
+    background:rgba(255,255,255,0.9);
+    color:black;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:50px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.big-play:hover{
+    transform:translate(-50%,-50%) scale(1.1);
+}
+
+.pro-player.playing .big-play{
+    opacity:0;
+    pointer-events:none;
+}
+
+/* Mute Button */
+.mute-btn{
+    position:absolute;
+    top:20px;
+    right:20px;
+    width:50px;
+    height:50px;
+    background:rgba(255,255,255,0.8);
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    font-size:20px;
+}
+/* ===== LAUNCH OFFER ===== */
+
+.launch-offer{
+margin:80px 0;
+padding:60px;
+border-radius:30px;
+background:linear-gradient(135deg,#2a0066,#120033);
+box-shadow:0 0 80px rgba(168,85,247,0.6);
+}
+
+.offer-container{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:40px;
+flex-wrap:wrap;
+}
+
+.offer-left{
+flex:1;
+min-width:300px;
+}
+
+.offer-left h2{
+font-size:36px;
+margin-bottom:25px;
+}
+
+.price-box{
+margin-bottom:25px;
+}
+
+.old-price{
+text-decoration:line-through;
+color:#aaa;
+margin-right:15px;
+font-size:22px;
+}
+
+.new-price{
+font-size:60px;
+color:#ffd34d;
+font-weight:700;
+margin-right:10px;
+}
+
+.only{
+font-size:26px;
+}
+
+.timer-box p{
+margin-bottom:10px;
+color:#ccc;
+}
+
+.timer{
+display:flex;
+gap:15px;
+margin-bottom:30px;
+}
+
+.timer div{
+background:rgba(0,0,0,0.4);
+padding:15px;
+border-radius:10px;
+width:80px;
+text-align:center;
+}
+
+.timer span{
+font-size:26px;
+font-weight:700;
+}
+
+.join-btn{
+padding:18px 35px;
+border:none;
+border-radius:40px;
+font-size:18px;
+background:linear-gradient(90deg,#a855f7,#7c3aed);
+color:white;
+cursor:pointer;
+box-shadow:0 0 25px rgba(168,85,247,0.9);
+transition:0.3s;
+}
+
+.join-btn:hover{
+transform:scale(1.08);
+}
+
+.offer-right img{
+width:320px;
+max-width:100%;
+filter:drop-shadow(0 0 30px rgba(168,85,247,0.8));
+}
+
+@media(max-width:900px){
+.offer-container{
+flex-direction:column;
+text-align:center;
+}
+}
+
+/*-----------END---------------*/
+
+</style>
+</head>
+
+<body>
+
+<div class="mouse-light" id="mouseLight"></div>
+
+<div class="wrapper">
+
+<header>
+    <div class="logo">
+        <img src="logo.png" alt="ClipX Logo">
+    </div>
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">Course</a>
+        <a href="#">Results</a>
+        <a href="#">Contact</a>
+    </nav>
+    <button class="btn">Join Now</button>
+</header>
+
+<section class="hero">
+    <h1 class="premium-hero">
+    Learn <span class="gradient-text">Video Editing</span>With World’s Most<br>
+ <span class="glow-text">POWERFUL</span> Online Program
+</h1>
+
+
+    <p class="glow-text">90-Day Income Guarantee Program</p>
+    <button class="btn">Start Your Editing Journey</button>
+</section>
+
+<!--Top Video Section -->
+
+    <div class="pro-player">
+
+    <video id="mainVideo" poster="thumbnail.jpg">
+        <source src="intro.mp4" type="video/mp4">
+    </video>
+
+    <div class="player-overlay"></div>
+
+    <div class="big-play" onclick="playVideo()">▶</div>
+
+    <div class="mute-btn" onclick="toggleMute()">🔊</div>
+
+</div>
+
+<div class="glass">
+    <h2>Struggling to Make Money?</h2>
+    <ul>
+        <li>No Skills?</li>
+        <li>No Clients?</li>
+        <li>No Earnings?</li>
+    </ul>
+    <p><strong>We Have The Solution!</strong></p>
+</div>
+
+<div class="glass inside-section">
+
+    <h2 class="inside-title">What’s Inside ClipX?</h2>
+
+    <div class="inside-grid">
+
+        <ul>
+            <li>Fundamentals of Editing</li>
+            <li>Color Correction</li>
+            <li>Cinematic Colour Grading</li>
+            <li>Designing Sound</li>
+            <li>Green Screen Editing</li>
+            <li>Youtube Editing</li>
+        </ul>
+
+        <ul>
+            <li>Ultimate Effects Making</li>
+            <li>Motion Graphics</li>
+            <li>Multi-Cam Editing</li>
+            <li>Animated Title Making</li>
+            <li>Advertisement Editing</li>
+            <li>90 Day Earnings Guarantee</li>
+        </ul>
+
+    </div>
+
+</div>
+
+
+<div class="glass">
+    <h2>Student Results</h2>
+    <div class="testimonials">
+        <div class="testimonial">I Got My First Client!</div>
+        <div class="testimonial">Making ₹30k/Month!</div>
+        <div class="testimonial">Best Course Ever!</div>
+    </div>
+
+
+</div>
+
+<section class="launch-offer">
+
+<div class="offer-container">
+
+<div class="offer-left">
+
+<h2>Special Launch Price</h2>
+
+<div class="price-box">
+
+<span class="old-price">₹4999</span>
+
+<span class="new-price">₹1999</span>
+
+<span class="only">Only</span>
+
+</div>
+
+<div class="timer-box">
+
+<p>Offer Ends In</p>
+
+<div class="timer">
+
+<div><span id="hrs">01</span><p>Hrs</p></div>
+
+<div><span id="min">30</span><p>Min</p></div>
+
+<div><span id="sec">55</span><p>Sec</p></div>
+
+</div>
+
+</div>
+
+<button class="join-btn">JOIN CLIPX NOW</button>
+
+</div>
+
+<div class="offer-right">
+
+<img src="person.png" alt="mentor">
+
+</div>
+
+</div>
+
+</section>
+
+<section class="earn-section">
+
+    <div class="earn-container">
+
+        <div class="earn-left">
+            <h1>
+                Still Not Earning <br>
+                <span>From Your Skills?</span>
+            </h1>
+
+            <ul>
+                <li>✔ No Editing Experience?</li>
+                <li>✔ No Clients?</li>
+                <li>✔ No Clear Career Path?</li>
+            </ul>
+
+            <h3>
+                🚀 Learn Editing → Get Clients → Start Earning
+            </h3>
+
+            <p class="bottom-text">
+                Join Our Program & Turn Your Skills Into Income!
+            </p>
+        </div>
+
+        <div class="earn-right">
+            <img src="laptop.png" alt="Video Editing">
+        </div>
+
+    </div>
+
+</section>
+
+<div class="glass what-you-get">
+
+    <h2 class="wyg-title">What You Get</h2>
+
+    <div class="wyg-grid">
+
+        <div class="wyg-item">
+            <div class="wyg-icon">🎬</div>
+            <p>Step-by-Step Lessons</p>
+        </div>
+
+        <div class="wyg-item">
+            <div class="wyg-icon">🛠️</div>
+            <p>Project-Based Training</p>
+        </div>
+
+        <div class="wyg-item">
+            <div class="wyg-icon">📄</div>
+            <p>Client Scripts & Templates</p>
+        </div>
+
+        <div class="wyg-item">
+            <div class="wyg-icon">💬</div>
+            <p>Community Support</p>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!--Don't Just Take Our Word For It26-02-26-->
+
+<div class="glass testimonial-section">
+
+    <h2 class="section-title">Don't Just Take Our Word For It</h2>
+    <p class="section-sub">Here's what our users say</p>
+
+    <div class="scroll-wrapper">
+        <div class="scroll-track">
+
+            <!-- Card 1 -->
+            <div class="review-card">
+
+                <div class="review-img">
+                    <img src="Rahul.jpg" alt="Rahul">
+                </div>
+
+                <h4>⭐⭐⭐⭐⭐</h4>
+                <h4>Rahul</h4>
+                <span>Professional Video Editor</span>
+                <p>In just 2-3 minutes it does what I do in 2-3 hours. Speed, quality, price - 10/10.</p>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="review-card">
+
+                <div class="review-img">
+                    <img src="Komal.jpg" alt="Komal">
+                </div>
+
+                <h4>⭐⭐⭐⭐⭐</h4>
+                <h4>Komal</h4>
+                <span>1M+ Instagram Followers</span>
+                <p>“Simple explanation aur practical learning. Loved it ❤️”</p>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="review-card">
+
+                <div class="review-img">
+                    <img src="Arjun.jpg" alt="Arjun Mehta">
+                </div>
+
+                <h4>⭐⭐⭐⭐</h4>
+                <h4>Arjun Mehta</h4>
+                <span>1B+ Social Media Views</span>
+                <p>“Client kaise find karte hain wala part sabse useful tha.”</p>
+            </div>
+
+            <!-- Duplicate for infinite loop -->
+            <div class="review-card">
+
+                <div class="review-img">
+                    <img src="Deepika.jpg" alt="Deepika Verma">
+                </div>
+
+                <h4>⭐⭐⭐⭐⭐</h4>
+                <h4>Deepika Verma</h4>
+                <span>Professional Video Editor</span>
+                <p>“Honestly best editing course for beginners. Easy to understand 👍”</p>
+            </div>
+
+            <div class="review-card">
+
+                <div class="review-img">
+                    <img src="parveen.jpg" alt="Parveen Kumar">
+                </div>
+
+                <h4>⭐⭐⭐⭐⭐</h4>
+                <h4>Parveen Kumar</h4>
+                <span>1M+ Instagram Followers</span>
+                <p>I am not spending a single penny anymore on expensive editors. Loved it.</p>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<div class="glass client-video-section">
+
+    <h2 class="section-title">Real Client Video Reviews</h2>
+
+    <div class="client-video-grid">
+
+        <div class="video-card">
+            <video src="video1.mp4" controls></video>
+            <p>Karan - First ₹50K Month</p>
+        </div>
+
+        <div class="video-card">
+            <video src="video2.mp4" controls></video>
+            <p>Sanchit - Got International Clients</p>
+        </div>
+
+        <div class="video-card">
+            <video src="video3.mp4" controls></video>
+            <p>Raghuveer - Full Time Freelancer Now</p>
+        </div>
+
+    </div>
+
+</div>
+
+<footer class="main-footer">
+
+    <div class="footer-grid">
+
+        <div class="footer-col">
+            <h3>ClipX</h3>
+            <p>
+                Learn professional video editing and start earning from freelancing.
+                Build real skills. Get real clients.
+            </p>
+        </div>
+
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <a href="#">Home</a>
+            <a href="#">Course</a>
+            <a href="#">Results</a>
+            <a href="#">Contact</a>
+        </div>
+
+        <div class="footer-col">
+            <h4>Resources</h4>
+            <a href="#">Free Demo</a>
+            <a href="#">Student Reviews</a>
+            <a href="#">FAQ</a>
+        </div>
+
+        <div class="footer-col">
+            <h4>Support</h4>
+            <a href="#">Help Center</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms & Conditions</a>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        © 2026 ClipX. All Rights Reserved.
+    </div>
+
+</footer>
+
+
+</div>
+
+<script>
+const light = document.getElementById("mouseLight");
+
+document.addEventListener("mousemove", (e) => {
+    light.style.left = e.clientX + "px";
+    light.style.top = e.clientY + "px";
+});
+
+const video = document.getElementById("mainVideo");
+const player = document.querySelector(".pro-player");
+
+function playVideo(){
+    video.play();
+    player.classList.add("playing");
+}
+
+video.addEventListener("click", function(){
+    if(video.paused){
+        video.play();
+        player.classList.add("playing");
+    } else{
+        video.pause();
+        player.classList.remove("playing");
+    }
+});
+
+video.addEventListener("pause", function(){
+    player.classList.remove("playing");
+});
+
+function toggleMute(){
+    video.muted = !video.muted;
+    document.querySelector(".mute-btn").textContent = video.muted ? "🔇" : "🔊";
+}
+
+setInterval(()=>{
+
+let hrs=document.getElementById("hrs");
+let min=document.getElementById("min");
+let sec=document.getElementById("sec");
+
+if(!hrs) return;
+
+let h=parseInt(hrs.innerText);
+let m=parseInt(min.innerText);
+let s=parseInt(sec.innerText);
+
+s--;
+
+if(s<0){
+s=59;
+m--;
+}
+
+if(m<0){
+m=59;
+h--;
+}
+
+hrs.innerText=h;
+min.innerText=m;
+sec.innerText=s;
+
+},1000);
+
+</script>
+
+</body>
+</html>
