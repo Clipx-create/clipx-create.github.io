@@ -759,6 +759,7 @@ ul li{
 .earn-right img{
     width:450px;
     max-width:100%;
+    border-radius:25px;
     filter:drop-shadow(0 0 30px rgba(168,85,247,0.8));
 }
 
@@ -1182,7 +1183,7 @@ html, body{
 
 /* Fix scrolling cards */
 .scroll-track{
-    animation:scrollLeft 40s linear infinite;
+    animation:scrollLeft 20s linear infinite;
 }
 
 /* Navbar spacing */
@@ -1201,6 +1202,30 @@ html, body{
     }
 }
 
+/* ===== FORCE 2 COLUMN MOBILE FIX ===== */
+
+@media (max-width:768px){
+
+    .inside-grid{
+        display:grid !important;
+        grid-template-columns: 1fr 1fr;  /* 2 columns force */
+        gap:20px;
+        max-width:100%;
+    }
+
+    .inside-grid ul{
+        min-width:100%;
+        padding:0;
+    }
+
+    .inside-grid li{
+        font-size:13px;
+        padding-left:22px;
+        margin:10px 0;
+    }
+
+}
+
 </style>
 </head>
 
@@ -1216,13 +1241,15 @@ html, body{
     </div>
     <nav>
         <a href="#">Home</a>
-        <a href="#">Course</a>
-        <a href="#">Results</a>
-        <a href="#">Contact</a>
+        <a href="#course">Course</a>
+        <a href="#results">Results</a>
+        <a href="https://wa.me/917717333941?text=Hi%20I%20want%20to%20join%20ClipX%20course" target="_blank">
+Contact
+</a>
     </nav>
     <!-- <button class="join-btn">JOIN CLIPX NOW</button> -->
-    <button class="join-btn" onclick="window.location.href='https://wa.me/917717333941'">
-Join Now
+    <button class="join-btn" onclick="window.open('https://pages.razorpay.com/pl_SXMC03PyGIFzuC/view','_blank')">
+JOIN NOW
 </button>
 </header>
 
@@ -1244,15 +1271,15 @@ Start Your Editing Journey
 
     <div class="pro-player">
 
-    <video id="mainVideo" poster="thumbnail.jpg">
+    <video id="mainVideo" autoplay muted loop playsinline>
         <source src="intro.mp4" type="video/mp4">
     </video>
 
     <div class="player-overlay"></div>
 
-    <div class="big-play" onclick="playVideo()">▶</div>
+    <!-- <div class="big-play" onclick="playVideo()">▶</div> -->
 
-    <div class="mute-btn" onclick="toggleMute()">🔊</div>
+    <!-- <div class="mute-btn" onclick="toggleMute()">🔊</div> -->
 
 </div>
 
@@ -1306,7 +1333,7 @@ Start Your Editing Journey
 
 </div>
 
-<section class="launch-offer">
+<section class="launch-offer" id="course">
 
 <div class="offer-container">
 
@@ -1318,7 +1345,7 @@ Start Your Editing Journey
 
 <span class="old-price">₹4999</span>
 
-<span class="new-price">₹1999</span>
+<span class="new-price">₹149</span>
 
 <span class="only">Only</span>
 
@@ -1340,7 +1367,7 @@ Start Your Editing Journey
 
 </div>
 
-<button class="join-btn" onclick="window.location.href='payment.html'">
+<button class="join-btn" onclick="window.open('https://pages.razorpay.com/pl_SXMC03PyGIFzuC/view','_blank')">
 JOIN CLIPX NOW
 </button>
 
@@ -1348,7 +1375,7 @@ JOIN CLIPX NOW
 
 <div class="offer-right">
 
-<img src="person.png" alt="mentor">
+<img src="Arvind.png" alt="mentor">
 
 </div>
 
@@ -1422,7 +1449,7 @@ JOIN CLIPX NOW
 
 <!--Don't Just Take Our Word For It26-02-26-->
 
-<div class="glass testimonial-section">
+<div class="glass testimonial-section" id="Contact">
 
     <h2 class="section-title">Don't Just Take Our Word For It</h2>
     <p class="section-sub">Here's what our users say</p>
@@ -1499,7 +1526,7 @@ JOIN CLIPX NOW
 
 </div>
 
-<div class="glass client-video-section">
+<div class="glass client-video-section" id="results">
 
     <h2 class="section-title">Real Client Video Reviews</h2>
 
@@ -1538,10 +1565,12 @@ JOIN CLIPX NOW
 
         <div class="footer-col">
             <h4>Quick Links</h4>
-            <a href="#">Home</a>
-            <a href="#">Course</a>
-            <a href="#">Results</a>
-            <a href="#">Contact</a>
+            <a href="https://www.clipx.in/">Home</a>
+            <a href="#course">Course</a>
+            <a href="#results">Results</a>
+            <a href="https://wa.me/917717333941?text=Hi%20I%20want%20to%20join%20ClipX%20course" target="_blank">
+Contact
+</a>
         </div>
 
         <div class="footer-col">
