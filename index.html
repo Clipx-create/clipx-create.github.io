@@ -208,12 +208,17 @@ nav a:hover{
 
 /* Glass Card */
 .glass{
-    background:rgba(255,255,255,0.05);
+    background:rgba(255,255,255,0.08);
     padding:40px;
     border-radius:20px;
-    backdrop-filter:blur(20px);
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);  /* ✅ iPhone FIX */
+
     border:1px solid rgba(255,255,255,0.08);
     margin-bottom:50px;
+
+    overflow:hidden; /* ✅ glow cut fix */
 }
 
 /* ===== WHAT YOU GET SECTION ===== */
@@ -418,7 +423,7 @@ ul li{
     display:flex;
     justify-content:center;   /* center columns */
     align-items:flex-start;
-    gap:140px;                /* equal spacing between columns */
+    gap:40px;                /* equal spacing between columns */
     text-align:left;
     flex-wrap:wrap;
     max-width:900px;          /* control width */
@@ -521,6 +526,7 @@ ul li{
     background:rgba(255,255,255,0.05);
     border:1px solid rgba(255,255,255,0.08);
     backdrop-filter:blur(15px);
+    -webkit-backdrop-filter: blur(...);
     transition:0.3s;
 }
 
@@ -1223,6 +1229,9 @@ html, body{
         padding-left:22px;
         margin:10px 0;
     }
+    .inside-grid li{
+    line-height:1.6;  /* ✅ text overlap fix */
+}
 
 }
 
