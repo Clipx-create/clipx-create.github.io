@@ -501,10 +501,6 @@ ul li{
     top:0;
     color:#a855f7;
     font-weight:700;
-    text-shadow:
-        0 0 8px #a855f7,
-        0 0 16px #7c3aed,
-        0 0 24px #9333ea;
 }
 
 /* ===== CENTER ALL MAIN SECTIONS ===== */
@@ -1280,7 +1276,7 @@ html, body{
 
     .inside-grid{
         display:grid;
-        grid-template-columns:1fr 1fr;
+        grid-template-columns:1fr;
         gap:15px;
     }
 
@@ -1330,7 +1326,7 @@ html, body{
 }
 
 .premium-cta.show{
-    bottom:20px;
+    bottom: calc(20px + env(safe-area-inset-bottom));
 }
 
 /* Price */
@@ -1422,6 +1418,14 @@ html, body{
     *{
         -webkit-transform: translateZ(0);
         transform: translateZ(0);
+    }
+}
+
+
+@supports (-webkit-touch-callout: none) {
+    .inside-grid{
+        display:flex;
+        flex-direction:column;
     }
 }
 
