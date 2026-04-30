@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>ClipX - Video Editing Course</title>
 
 <meta name="description" content="Learn professional video editing with ClipX and start earning from freelancing. 90-Day Income Guarantee Program.">
@@ -22,6 +22,7 @@
 
 html{
     scroll-behavior:smooth;
+    -webkit-overflow-scrolling: touch;
 }
 
 body{
@@ -559,7 +560,7 @@ ul li{
 .scroll-track{
     display:flex;
     gap:30px;
-    width:max-content;
+    min-width:100%;
     animation:scrollLeft 25s linear infinite;
 }
 
@@ -1174,6 +1175,11 @@ img{
     display:block;
 }
 
+video{
+    max-width:100%;
+    height:auto;
+    display:block;
+}
 /* ===== FINAL MOBILE FIX (IMPORTANT) ===== */
 
 html, body{
@@ -1184,7 +1190,9 @@ html, body{
 @media (max-width:768px){
     .wrapper{
         padding:20px 15px;
-        margin:10px 10px;   /* 👈 LEFT RIGHT EQUAL */
+        margin:10px auto;
+        width:95%;
+        max-width:95%;   /* 👈 LEFT RIGHT EQUAL */
         border-radius:20px;
     }
 }
@@ -1394,6 +1402,36 @@ html, body{
     0%{opacity:1;}
     50%{opacity:0;}
     100%{opacity:1;}
+}
+
+/* ===== iOS HEIGHT FIX ===== */
+
+@supports (-webkit-touch-callout: none) {
+    html, body {
+        height: -webkit-fill-available;
+    }
+
+    .wrapper {
+        min-height: -webkit-fill-available;
+    }
+}
+
+/* ===== iOS TRANSFORM FIX ===== */
+
+@supports (-webkit-touch-callout: none) {
+    *{
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+    }
+}
+
+/* ===== iOS FIXED POSITION FIX ===== */
+
+@supports (-webkit-touch-callout: none) {
+    .premium-cta{
+        position: sticky;
+        bottom: 10px;
+    }
 }
 
 </style>
