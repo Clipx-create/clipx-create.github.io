@@ -107,10 +107,10 @@ body::after{
 
 /* Main Container */
 .wrapper{
-    width:100%;              /* ✅ ADD */
+    width:92%;              /* ✅ ADD */
     max-width:1200px;        /* desktop ke liye limit */
     margin:60px auto;
-    padding:60px;
+    padding:40px 20px;
     border-radius:35px;
     background:linear-gradient(145deg,#0f0c29,#140c35);
     box-shadow:
@@ -806,8 +806,9 @@ ul li{
 }
 
 .earn-right img{
-    width:450px;
+    width:100%;
     max-width:100%;
+    height:auto;
     border-radius:25px;
     filter:drop-shadow(0 0 30px rgba(168,85,247,0.8));
 }
@@ -1398,6 +1399,14 @@ html, body{
     0%{opacity:1;}
     50%{opacity:0;}
     100%{opacity:1;}
+}
+
+@supports (-webkit-touch-callout: none) {
+    .wrapper{
+        width:92%;
+        margin:40px auto;
+        padding:30px 15px;
+    }
 }
 
 /* ===== iOS HEIGHT FIX ===== */
