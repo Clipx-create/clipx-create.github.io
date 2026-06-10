@@ -2,8 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>ClipX - Video Editing Course</title>
+
+<meta name="description" content="Learn professional video editing with ClipX and start earning from freelancing. 90-Day Income Guarantee Program.">
+<meta name="keywords" content="video editing course, freelancing, earn online, clipx">
+<meta name="author" content="ClipX">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
@@ -13,15 +17,44 @@
     padding:0;
     box-sizing:border-box;
     font-family:'Poppins',sans-serif;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html{
+    scroll-behavior:smooth;
+    -webkit-overflow-scrolling: touch;
 }
 
 body{
+    /* Background */
     background:linear-gradient(-45deg,#0a041a,#1a0d3a,#140c35,#0f0c29);
     background-size:400% 400%;
     animation:bgMove 15s ease infinite;
+
+    /* Text */
     color:#fff;
+
+    /* Fixes */
     overflow-x:hidden;
+    -webkit-text-size-adjust:100%;
+
+    /* Performance */
+    will-change: background;
+
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
 }
+
+@media (hover:none){
+    .mouse-light{
+        display:none;
+    }
+}
+
+/* Mouse light (separate hi rakho ✅) */
+/*.mouse-light{
+    will-change: transform;
+}*/
 
 @keyframes bgMove{
     0%{background-position:0% 50%;}
@@ -39,8 +72,15 @@ body::after{
     width:600px;
     height:600px;
     border-radius:50%;
-    filter:blur(150px);
+    filter:blur(40px);
     z-index:-2;
+}
+
+@supports (-webkit-touch-callout: none) {
+    body::before,
+    body::after{
+        filter:blur(80px); /* ✅ iPhone ke liye reduce blur */
+    }
 }
 
 body::before{
@@ -70,9 +110,10 @@ body::after{
 
 /* Main Container */
 .wrapper{
-    max-width:1200px;
+    width:100%;              /* ✅ ADD */
+    max-width:1200px;        /* desktop ke liye limit */
     margin:60px auto;
-    padding:60px;
+    padding:40px 20px;
     border-radius:35px;
     background:linear-gradient(145deg,#0f0c29,#140c35);
     box-shadow:
@@ -203,15 +244,34 @@ nav a:hover{
 }
 
 
-
 /* Glass Card */
 .glass{
-    background:rgba(255,255,255,0.05);
+    background:rgba(255,255,255,0.08);
     padding:40px;
     border-radius:20px;
-    backdrop-filter:blur(20px);
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
     border:1px solid rgba(255,255,255,0.08);
     margin-bottom:50px;
+    overflow:hidden;
+}
+
+/* ✅ iOS COMPLETE FIX */
+@supports (-webkit-touch-callout: none) {
+    .glass{
+        backdrop-filter:none;
+        -webkit-backdrop-filter:none;
+        background:rgba(20,12,53,0.95);
+    }
+}
+
+@supports (-webkit-touch-callout: none) {
+    body{
+        animation:none;
+        background:#0f0c29;
+    }
 }
 
 /* ===== WHAT YOU GET SECTION ===== */
@@ -416,7 +476,7 @@ ul li{
     display:flex;
     justify-content:center;   /* center columns */
     align-items:flex-start;
-    gap:140px;                /* equal spacing between columns */
+    gap:40px;                /* equal spacing between columns */
     text-align:left;
     flex-wrap:wrap;
     max-width:900px;          /* control width */
@@ -444,10 +504,6 @@ ul li{
     top:0;
     color:#a855f7;
     font-weight:700;
-    text-shadow:
-        0 0 8px #a855f7,
-        0 0 16px #7c3aed,
-        0 0 24px #9333ea;
 }
 
 /* ===== CENTER ALL MAIN SECTIONS ===== */
@@ -475,10 +531,6 @@ ul li{
 /* Bonuses section tighter center */
 .glass ul li{
     margin:12px 0;
-}
-
-/* Optional: Make all glass cards content centered */
-.glass{
     text-align:center;
 }
 
@@ -507,7 +559,7 @@ ul li{
 .scroll-track{
     display:flex;
     gap:30px;
-    width:max-content;
+    min-width:100%;
     animation:scrollLeft 25s linear infinite;
 }
 
@@ -519,6 +571,7 @@ ul li{
     background:rgba(255,255,255,0.05);
     border:1px solid rgba(255,255,255,0.08);
     backdrop-filter:blur(15px);
+    -webkit-backdrop-filter: blur(15px);
     transition:0.3s;
 }
 
@@ -647,7 +700,8 @@ ul li{
 
 .video-card video{
     width:100%;
-    height:480px;
+    height:auto;
+    aspect-ratio:9/16; /* mobile friendly reel size */
     object-fit:cover;
     border-radius:20px;
 }
@@ -755,8 +809,10 @@ ul li{
 }
 
 .earn-right img{
-    width:450px;
+    width:100%;
     max-width:100%;
+    height:auto;
+    border-radius:25px;
     filter:drop-shadow(0 0 30px rgba(168,85,247,0.8));
 }
 
@@ -930,15 +986,24 @@ font-weight:700;
 }
 
 .join-btn{
-padding:18px 35px;
-border:none;
-border-radius:40px;
-font-size:18px;
-background:linear-gradient(90deg,#a855f7,#7c3aed);
-color:white;
-cursor:pointer;
-box-shadow:0 0 25px rgba(168,85,247,0.9);
-transition:0.3s;
+    padding:18px 35px;
+    border:none;
+    border-radius:40px;
+    font-size:18px;
+    background:linear-gradient(90deg,#a855f7,#7c3aed);
+    color:white;
+    cursor:pointer;
+    box-shadow:0 0 25px rgba(168,85,247,0.9);
+    transition:0.3s;
+
+    /* ✅ ADD THIS */
+    animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+    0%{ box-shadow:0 0 0 0 rgba(168,85,247,0.7);}
+    70%{ box-shadow:0 0 0 15px rgba(168,85,247,0);}
+    100%{ box-shadow:0 0 0 0 rgba(168,85,247,0);}
 }
 
 .join-btn:hover{
@@ -960,6 +1025,458 @@ text-align:center;
 
 /*-----------END---------------*/
 
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* Tablet View */
+@media (max-width: 1024px){
+
+    .wrapper{
+        padding:40px 20px;
+        margin:30px 15px;
+    }
+
+    .premium-hero{
+        font-size:34px;
+    }
+
+    .earn-left h1{
+        font-size:32px;
+    }
+
+    .earn-right img{
+        width:300px;
+    }
+
+    .offer-container{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    .new-price{
+        font-size:45px;
+    }
+
+}
+
+
+/* Mobile View */
+@media (max-width: 768px){
+
+    header{
+        flex-direction:column;
+        gap:20px;
+    }
+
+    nav{
+        display:flex;
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+
+    nav a{
+        margin:8px;
+        font-size:13px;
+    }
+
+    .hero h1{
+        font-size:26px;
+        line-height:1.4;
+    }
+
+    .premium-hero{
+        font-size:26px;
+    }
+
+    .btn{
+        padding:10px 18px;
+        font-size:14px;
+    }
+
+    .pro-player{
+        margin:40px auto;
+    }
+
+    .glass{
+        padding:25px 15px;
+    }
+
+    .inside-grid{
+        flex-direction:column;
+        gap:30px;
+        text-align:center;
+    }
+
+    .wyg-grid{
+        flex-direction:column;
+        gap:20px;
+    }
+
+    .wyg-item{
+        width:100%;
+    }
+
+    .earn-section{
+        padding:30px 20px;
+    }
+
+    .earn-left h1{
+        font-size:26px;
+    }
+
+    .earn-left ul li{
+        font-size:15px;
+    }
+
+    .video-card{
+        width:100%;
+    }
+
+    .video-card video{
+        height:350px;
+    }
+
+    .footer-grid{
+        flex-direction:column;
+        text-align:center;
+    }
+
+}
+
+
+/* Small Mobile */
+@media (max-width: 480px){
+
+    .premium-hero{
+        font-size:22px;
+    }
+
+    .hero p{
+        font-size:13px;
+    }
+
+    .new-price{
+        font-size:36px;
+    }
+
+    .timer div{
+        width:60px;
+        padding:10px;
+    }
+
+    .timer span{
+        font-size:18px;
+    }
+
+}
+
+img{
+    max-width:100%;
+    height:auto;
+    display:block;
+}
+
+video{
+    max-width:100%;
+    height:auto;
+    display:block;
+}
+/* ===== FINAL MOBILE FIX (IMPORTANT) ===== */
+
+html, body{
+    overflow-x:hidden;
+}
+
+/* Wrapper fix */
+@media (max-width:768px){
+    .wrapper{
+        padding:20px 15px;
+        margin:10px auto;
+        width:95%;
+        max-width:95%;   /* 👈 LEFT RIGHT EQUAL */
+        border-radius:20px;
+    }
+}
+/* Fix BIG gaps */
+@media (max-width:768px){
+    .inside-grid{
+        gap:20px;
+    }
+}
+
+/* Fix headings */
+@media (max-width:768px){
+    h1{
+        font-size:24px;
+        line-height:1.4;
+    }
+
+    h2{
+        font-size:20px;
+    }
+}
+
+/* Video fix */
+@media (max-width:768px){
+    .pro-player{
+        margin:30px auto;
+        border-radius:15px;
+    }
+}
+
+/* Offer section fix */
+@media (max-width:768px){
+    .launch-offer{
+        padding:25px 15px;
+    }
+
+    .new-price{
+        font-size:32px;
+    }
+}
+
+/* Earn section fix */
+@media (max-width:768px){
+    .earn-section{
+        padding:25px 15px;
+    }
+}
+
+/* Cards full width */
+@media (max-width:768px){
+    .review-card,
+    .video-card,
+    .wyg-item{
+        width:100%;
+        max-width:100%;
+    }
+}
+
+/* Fix scrolling cards */
+.scroll-track{
+    animation:scrollLeft 20s linear infinite;
+}
+
+/* Navbar spacing */
+@media (max-width:768px){
+    nav{
+        gap:10px;
+    }
+}
+
+/* Buttons responsive */
+@media (max-width:768px){
+    .btn,
+    .join-btn{
+        width:100%;
+        text-align:center;
+    }
+}
+
+/* ===== FORCE 2 COLUMN MOBILE FIX ===== */
+
+@media (max-width:768px){
+
+    @media (max-width:768px){
+
+    .inside-grid{
+        display:grid;
+        grid-template-columns:1fr;
+        gap:15px;
+    }
+
+    .inside-grid li{
+        font-size:13px;
+        line-height:1.6;
+        word-break:break-word;
+    }
+
+}
+
+    .inside-grid ul{
+        min-width:100%;
+        padding:0;
+    }
+
+    .inside-grid li{
+        font-size:13px;
+        padding-left:22px;
+        margin:10px 0;
+    }
+    .inside-grid li{
+    line-height:1.6;  /* ✅ text overlap fix */
+}
+
+}
+
+.premium-cta{
+    position:fixed;
+    bottom:-200px;
+    left:50%;
+    transform:translateX(-50%);
+    width:90%;
+    max-width:500px;
+
+    /* 🔥 MATCH YOUR WEBSITE THEME */
+    background:linear-gradient(145deg,#0f0c29,#140c35);
+    padding:22px;
+    border-radius:20px;
+
+    border:1px solid rgba(168,85,247,0.3);
+    box-shadow:0 0 40px rgba(124,58,237,0.4);
+
+    text-align:center;
+    transition:0.5s ease;
+    z-index:9999;
+}
+
+.premium-cta.show{
+    bottom: calc(20px + env(safe-area-inset-bottom));
+}
+
+/* Price */
+.cta-top{
+    margin-bottom:15px;
+}
+
+.old{
+    text-decoration:line-through;
+    color:#888;
+    margin-right:8px;
+    font-size:14px;
+}
+
+.new{
+    font-size:28px;
+    font-weight:700;
+    color:#fff;
+    margin-right:5px;
+}
+
+.only{
+    color:#a855f7;
+    font-size:14px;
+}
+
+/* Button (match JOIN NOW button) */
+.cta-btn{
+    width:100%;
+    padding:18px;
+    border:none;
+    border-radius:40px;
+    font-size:16px;
+    font-weight:600;
+    color:#fff;
+
+    background:linear-gradient(90deg,#7c3aed,#a855f7);
+    cursor:pointer;
+    margin-bottom:12px;
+
+    box-shadow:0 0 25px rgba(168,85,247,0.8);
+    transition:0.3s;
+}
+
+.cta-btn:hover{
+    transform:scale(1.05);
+}
+
+/* Bottom text */
+.cta-bottom{
+    font-size:13px;
+    color:#a855f7;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:6px;
+}
+
+/* Blinking dot */
+.dot{
+    width:8px;
+    height:8px;
+    background:#a855f7;
+    border-radius:50%;
+    animation:blink 1s infinite;
+}
+
+@keyframes blink{
+    0%{opacity:1;}
+    50%{opacity:0;}
+    100%{opacity:1;}
+}
+
+.sound-btn{
+    position:absolute;
+    bottom:20px;
+    left:50%;
+    transform:translateX(-50%);
+    z-index:100;
+    padding:12px 20px;
+    border:none;
+    border-radius:30px;
+    background:linear-gradient(90deg,#7c3aed,#a855f7);
+    color:#fff;
+    font-weight:600;
+    cursor:pointer;
+    box-shadow:0 0 20px rgba(168,85,247,0.8);
+}
+
+.sound-btn.hide{
+    display:none;
+}
+
+@supports (-webkit-touch-callout: none) {
+    .wrapper{
+        width:92%;
+        margin:40px auto;
+        padding:30px 15px;
+    }
+}
+
+/* ===== iOS HEIGHT FIX ===== */
+
+@supports (-webkit-touch-callout: none) {
+    html, body {
+        height: -webkit-fill-available;
+    }
+
+    .wrapper {
+        min-height: -webkit-fill-available;
+    }
+}
+
+/* ===== iOS TRANSFORM FIX ===== */
+
+@supports (-webkit-touch-callout: none) {
+    *{
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+    }
+}
+
+
+@supports (-webkit-touch-callout: none) {
+    .inside-grid{
+        display:flex;
+        flex-direction:column;
+    }
+}
+
+/* ===== iOS FIXED POSITION FIX ===== */
+
+@supports (-webkit-touch-callout: none) {
+    .premium-cta{
+        position: sticky;
+        bottom: 10px;
+    }
+}
+
+@supports (-webkit-touch-callout: none) {
+    .wrapper{
+        padding-left:15px;
+        padding-right:15px;
+    }
+}
+
 </style>
 </head>
 
@@ -971,41 +1488,53 @@ text-align:center;
 
 <header>
     <div class="logo">
-        <img src="logo.png" alt="ClipX Logo">
+        <img src="logo.png" alt="ClipX Logo" loading="lazy">
     </div>
     <nav>
         <a href="#">Home</a>
-        <a href="#">Course</a>
-        <a href="#">Results</a>
-        <a href="#">Contact</a>
+        <a href="#course">Course</a>
+        <a href="#results">Results</a>
+        <a href="https://wa.me/917717333941?text=Hi%20I%20want%20to%20join%20ClipX%20course" target="_blank" rel="noopener noreferrer">
+                Contact
+            </a>
     </nav>
-    <button class="btn">Join Now</button>
+    <!-- <button class="join-btn">JOIN CLIPX NOW</button> -->
+    <button class="join-btn" onclick="window.open('https://pages.razorpay.com/pl_SXMC03PyGIFzuC/view','_blank')">
+JOIN NOW
+</button>
 </header>
 
 <section class="hero">
     <h1 class="premium-hero">
-    Learn <span class="gradient-text">Video Editing</span>With World’s Most<br>
+    Learn <span class="gradient-text">Video Editing</span> With World’s Most<br>
  <span class="glow-text">POWERFUL</span> Online Program
 </h1>
 
 
     <p class="glow-text">90-Day Income Guarantee Program</p>
-    <button class="btn">Start Your Editing Journey</button>
+    <!-- <button class="btn">Start Your Editing Journey</button> -->
+     <button class="btn" onclick="window.open('https://wa.me/917717333941','_blank')">
+Start Your Editing Journey
+</button>
 </section>
 
 <!--Top Video Section -->
 
     <div class="pro-player">
 
-    <video id="mainVideo" poster="thumbnail.jpg">
-        <source src="intro_neww.mp4" type="video/mp4">
-    </video>
+    <video id="mainVideo" autoplay muted loop playsinline webkit-playsinline controls preload="metadata">
+    <source src="intro_neww.mp4" type="video/mp4">
+</video>
+
+<button class="sound-btn" onclick="enableSound()">
+🔊 TAP FOR SOUND
+</button>
 
     <div class="player-overlay"></div>
 
-    <div class="big-play" onclick="playVideo()">▶</div>
+    <!-- <div class="big-play" onclick="playVideo()">▶</div> -->
 
-    <div class="mute-btn" onclick="toggleMute()">🔊</div>
+    <!-- <div class="mute-btn" onclick="toggleMute()">🔊</div> -->
 
 </div>
 
@@ -1059,7 +1588,7 @@ text-align:center;
 
 </div>
 
-<section class="launch-offer">
+<section class="launch-offer" id="course">
 
 <div class="offer-container">
 
@@ -1071,7 +1600,7 @@ text-align:center;
 
 <span class="old-price">₹4999</span>
 
-<span class="new-price">₹1999</span>
+<span class="new-price">₹149</span>
 
 <span class="only">Only</span>
 
@@ -1093,13 +1622,15 @@ text-align:center;
 
 </div>
 
-<button class="join-btn">JOIN CLIPX NOW</button>
+<button class="join-btn" onclick="window.open('https://pages.razorpay.com/pl_SXMC03PyGIFzuC/view','_blank')">
+JOIN CLIPX NOW
+</button>
 
 </div>
 
 <div class="offer-right">
 
-<img src="person.png" alt="mentor">
+<img src="Arvind.png" alt="mentor" loading="lazy">
 
 </div>
 
@@ -1173,7 +1704,7 @@ text-align:center;
 
 <!--Don't Just Take Our Word For It26-02-26-->
 
-<div class="glass testimonial-section">
+<div class="glass testimonial-section" id="Contact">
 
     <h2 class="section-title">Don't Just Take Our Word For It</h2>
     <p class="section-sub">Here's what our users say</p>
@@ -1250,24 +1781,24 @@ text-align:center;
 
 </div>
 
-<div class="glass client-video-section">
+<div class="glass client-video-section" id="results">
 
     <h2 class="section-title">Real Client Video Reviews</h2>
 
     <div class="client-video-grid">
 
         <div class="video-card">
-            <video src="video1.mp4" controls></video>
+            <video src="video1.mp4" controls preload="metadata"></video>
             <p>Karan - First ₹50K Month</p>
         </div>
 
         <div class="video-card">
-            <video src="video2.mp4" controls></video>
+            <video src="video2.mp4" controls preload="metadata"></video>
             <p>Sanchit - Got International Clients</p>
         </div>
 
         <div class="video-card">
-            <video src="video3.mp4" controls></video>
+            <video src="video3.mp4" controls preload="metadata"></video>
             <p>Raghuveer - Full Time Freelancer Now</p>
         </div>
 
@@ -1289,10 +1820,12 @@ text-align:center;
 
         <div class="footer-col">
             <h4>Quick Links</h4>
-            <a href="#">Home</a>
-            <a href="#">Course</a>
-            <a href="#">Results</a>
-            <a href="#">Contact</a>
+            <a href="https://www.clipx.in/">Home</a>
+            <a href="#course">Course</a>
+            <a href="#results">Results</a>
+            <a href="https://wa.me/917717333941?text=Hi%20I%20want%20to%20join%20ClipX%20course" target="_blank" rel="noopener noreferrer">
+                Contact
+            </a>
         </div>
 
         <div class="footer-col">
@@ -1314,6 +1847,25 @@ text-align:center;
     <div class="footer-bottom">
         © 2026 ClipX. All Rights Reserved.
     </div>
+
+    <div class="premium-cta" id="scrollCTA">
+
+    <div class="cta-top">
+        <span class="old">₹1,999</span>
+        <span class="new">₹149</span>
+        <span class="only">only</span>
+    </div>
+
+    <button class="cta-btn" onclick="window.open('https://pages.razorpay.com/pl_SXMC03PyGIFzuC/view','_blank')">
+        Book Slot Now
+    </button>
+
+    <p class="cta-bottom">
+        <span class="dot"></span>
+        LIMITED SLOTS AVAILABLE
+    </p>
+
+</div>
 
 </footer>
 
@@ -1367,23 +1919,73 @@ let h=parseInt(hrs.innerText);
 let m=parseInt(min.innerText);
 let s=parseInt(sec.innerText);
 
+if(h<=0 && m<=0 && s<=0){
+    hrs.innerText="00";
+    min.innerText="00";
+    sec.innerText="00";
+    return;
+}
+
 s--;
 
 if(s<0){
-s=59;
-m--;
+    s=59;
+    m--;
 }
 
 if(m<0){
-m=59;
-h--;
+    m=59;
+    h--;
 }
 
-hrs.innerText=h;
-min.innerText=m;
-sec.innerText=s;
+hrs.innerText=String(h).padStart(2,'0');
+min.innerText=String(m).padStart(2,'0');
+sec.innerText=String(s).padStart(2,'0');
 
 },1000);
+
+const scrollCTA = document.getElementById("scrollCTA");
+
+window.addEventListener("scroll", () => {
+
+    if(window.scrollY > 500){
+        scrollCTA.classList.add("show");
+    } else {
+        scrollCTA.classList.remove("show");
+    }
+
+});
+
+function enableSound(){
+    const video = document.getElementById("mainVideo");
+    const btn = document.querySelector(".sound-btn");
+
+    video.muted = false;
+
+    video.play().then(()=>{
+        btn.classList.add("hide");
+    });
+}
+
+const mainVideo = document.getElementById("mainVideo");
+
+const observer = new IntersectionObserver((entries) => {
+
+    entries.forEach(entry => {
+
+        if(entry.isIntersecting){
+            mainVideo.play().catch(()=>{});
+        } else {
+            mainVideo.pause();
+        }
+
+    });
+
+}, {
+    threshold: 0.3
+});
+
+observer.observe(mainVideo);
 
 </script>
 
